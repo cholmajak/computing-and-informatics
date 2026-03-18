@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Department of Computing and Informatics</title>
+    <!-- Use a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #0033A0;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            padding-top: 90px;
+            /* Space for fixed header */
+        }
+
+        ::selection {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--blue);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--blue);
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        /* Navigation Links */
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            border-color: var(--blue);
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background-color: var(--blue);
+            background-image: linear-gradient(rgba(0, 51, 160, 0.4), rgba(0, 51, 160, 0.5)), url('pic3.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 5%;
+            text-align: center;
+            border-bottom: 2px solid var(--blue);
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #B8860B;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--white);
+            width: 100%;
+        }
+
+        .content-section.alt-bg {
+            background-color: #f8f9fa;
+            /* Slight off-white for contrast between sections */
+            border-top: 2px solid var(--blue);
+            border-bottom: 2px solid var(--blue);
+            max-width: 100%;
+        }
+
+        .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: var(--blue);
+            color: var(--white);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--blue);
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        .timeline {
+            margin-top: 3rem;
+            border-left: 4px solid var(--blue);
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.7rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--white);
+            border: 4px solid var(--blue);
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            background: #e6ebf5;
+            padding: 0.2rem 0.8rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            border: 2px solid var(--blue);
+            padding: 2.5rem;
+            transition: all 0.2s ease;
+            background-color: var(--white);
+        }
+
+        .info-card:hover {
+            transform: translate(-8px, -8px);
+            box-shadow: 12px 12px 0px var(--blue);
+            background-color: var(--blue);
+        }
+
+        .info-card:hover h3,
+        .info-card:hover p {
+            color: var(--white);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-bottom: 1rem;
+                gap: 1rem;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            body {
+                padding-top: 180px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo.jpeg" alt="Bugema University Logo">
+            <div class="logo-text">
+                Bugema University
+                <span>Department of Computing and Informatics</span>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>About The Department</h1>
+    </section>
+
+    <!-- History Section -->
+    <section class="content-section">
+        <div class="section-inner">
+            <div class="section-title">Our Journey</div>
+            <h2>A Brief History</h2>
+            <p>The Department of Computing and Informatics at Bugema University has a rich tradition of pioneering
+                technological education. Our journey began with a vision to equip students with the necessary technical
+                skills to thrive in an increasingly digital world.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">2005</span>
+                    <p>The department was initially established as the <strong>IT Department</strong>. It began by
+                        offering foundational courses in Information Technology to a small but dedicated cohort of
+                        students aspiring to enter the rapidly growing tech sector.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">Evolution & Growth</span>
+                    <p>To reflect the rapid advancements in technology and our broadening academic scope, the IT
+                        Department evolved into the modern <strong>Department of Computing and Informatics</strong>. The
+                        curriculum was continually expanded to encompass advanced fields like Artificial Intelligence,
+                        Software Engineering, and Cyber Security.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">Present Day</span>
+                    <p>Today, we stand as a pillar of technological innovation and academic excellence. We remain
+                        committed to shaping well-rounded, industry-ready professionals capable of creating
+                        sophisticated solutions to modern-day challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="content-section alt-bg">
+        <div class="section-inner">
+            <div class="grid-2">
+                <div class="info-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide high-quality education and conduct impactful research in computing and informatics,
+                        fostering a generation of innovators, ethical professionals, and leaders who can leverage
+                        technology for societal development.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Our Vision</h3>
+                    <p>To be a premier center of excellence in computing education and research, recognized globally for
+                        producing graduates who drive technological transformation and sustainable development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="content-section">
+        <div class="section-inner">
+            <div class="section-title">What Drives Us</div>
+            <h2>Our Core Values</h2>
+            <p>Everything we do is guided by a strong commitment to core principles that define our educational
+                environment and scholarly pursuits:</p>
+            <ul
+                style="list-style-position: inside; font-size: 1.1rem; line-height: 1.8; font-weight: 600; margin-left: 1rem; color: var(--blue);">
+                <li style="margin-bottom: 0.5rem;"><strong>Innovation:</strong> Constantly pushing the boundaries of
+                    knowledge and collaboratively applying creative solutions to complex problems.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Excellence:</strong> Maintaining the absolute highest
+                    standards across teaching, research, and professional practices.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Integrity:</strong> Upholding strict ethical standards,
+                    transparency, and honesty in all computing endeavors and campus life.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Collaboration:</strong> Fostering dedicated teamwork and
+                    productive partnerships between students, faculty members, and the broader tech industry.</li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+
+</html>

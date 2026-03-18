@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Department of Computing and Informatics</title>
+    <!-- Modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blue: #0033A0;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            padding-top: 90px;
+        }
+
+        ::selection {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--blue);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--blue);
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        /* Navigation Links */
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            border-color: var(--blue);
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background-color: var(--blue);
+            color: var(--white);
+            padding: 4rem 5%;
+            text-align: center;
+            border-bottom: 2px solid var(--blue);
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--white);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .contact-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* Inquiry Form */
+        .inquiry-form {
+            background-color: var(--white);
+            padding: 3rem;
+            border: 2px solid var(--blue);
+            box-shadow: 8px 8px 0px var(--blue);
+        }
+
+        .inquiry-form h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--blue);
+            background-color: var(--white);
+            color: var(--blue);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: inset 4px 4px 0px rgba(0, 51, 160, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: rgba(0, 51, 160, 0.6);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--blue);
+            background-color: var(--blue);
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            width: 100%;
+            display: block;
+        }
+
+        .btn-submit:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px var(--blue);
+            background-color: var(--white);
+            color: var(--blue);
+        }
+
+        /* Minimized Contact Info */
+        .mini-contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--blue);
+        }
+
+        .mini-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--blue);
+        }
+
+        .mini-item i {
+            font-size: 1.5rem;
+        }
+
+        .mini-item .fa-whatsapp {
+            color: #25D366;
+        }
+
+        .mini-item .fa-envelope {
+            color: #EA4335;
+        }
+
+        .mini-item .fa-phone {
+            color: #34B7F1;
+        }
+
+        .mini-item a,
+        .mini-item p {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--blue);
+            transition: opacity 0.2s;
+        }
+
+        .mini-item a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-bottom: 1rem;
+                gap: 1rem;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            body {
+                padding-top: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo.jpeg" alt="Bugema University Logo">
+            <div class="logo-text">
+                Bugema University
+                <span>Department of Computing and Informatics</span>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Get In Touch</h1>
+    </section>
+
+    <!-- Contact Info & Form -->
+    <section class="content-section">
+        <div class="contact-layout">
+
+            <!-- Inquiry Form (Above) -->
+            <div class="inquiry-form">
+                <h2>Send an Inquiry</h2>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" placeholder="How can we help you?"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Inquiry</button>
+                </form>
+            </div>
+
+            <!-- Minimized Contact Info (Below) -->
+            <div class="mini-contact-bar">
+                <div class="mini-item">
+                    <a href="tel:+256774743433"><i class="fa-solid fa-phone"></i></a>
+                    <a href="tel:+256774743433">+256 774 743 433</a>
+                </div>
+
+                <div class="mini-item">
+                    <a href="https://wa.me/256769989989" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://wa.me/256769989989" target="_blank">+256 769 989 989</a>
+                </div>
+
+                <div class="mini-item">
+                    <a href="mailto:Bugemauniv.ac.ug"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:Bugemauniv.ac.ug">Bugemauniv.ac.ug</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

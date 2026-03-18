@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates - Department of Computing and Informatics</title>
+    <!-- Use a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blue: #0033A0;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            padding-top: 90px;
+        }
+
+        ::selection {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--blue);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--blue);
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        /* Navigation Links */
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            border-color: var(--blue);
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background-color: var(--blue);
+            background-image: linear-gradient(rgba(0, 51, 160, 0.75), rgba(0, 51, 160, 0.85)), url('news.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 6rem 5%;
+            text-align: center;
+            border-bottom: 4px solid var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 51, 160, 0.3) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+            animation: heroShine 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heroShine {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(20%, 20%) rotate(180deg);
+            }
+        }
+
+        .page-hero>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--white);
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-hero p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.3rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Decorative line under hero title */
+        .page-hero h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--white);
+            margin: 1.5rem auto 0;
+            border-radius: 2px;
+            animation: expandWidth 1s ease-out 0.6s both;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100px;
+            }
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 5rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background-color: var(--blue);
+            color: var(--white);
+            padding: 4rem 5%;
+            margin-bottom: 3rem;
+        }
+
+        .countdown-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background-color: var(--white);
+            color: var(--blue);
+            padding: 1.5rem 2rem;
+            min-width: 140px;
+            border: 2px solid var(--white);
+        }
+
+        .countdown-item .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .countdown-item .label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* News Cards */
+        .news-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .news-card {
+            border: 2px solid var(--blue);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .news-card:hover {
+            transform: translate(-8px, -8px);
+            box-shadow: 12px 12px 0px var(--blue);
+        }
+
+        .news-card.ongoing {
+            border-left: 8px solid #22c55e;
+        }
+
+        .news-card.upcoming {
+            border-left: 8px solid var(--blue);
+        }
+
+        .news-card.urgent {
+            border-left: 8px solid #ef4444;
+        }
+
+        .news-header {
+            background-color: var(--blue);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .news-header h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .news-badge {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 999px;
+        }
+
+        .badge-ongoing {
+            background-color: #22c55e;
+            color: white;
+        }
+
+        .badge-upcoming {
+            background-color: var(--white);
+            color: var(--blue);
+        }
+
+        .badge-urgent {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(0, 51, 160, 0.7);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        .news-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 51, 160, 0.2);
+        }
+
+        .news-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .news-detail-item i {
+            color: var(--blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--blue);
+            color: var(--white);
+            padding: 3rem 5% 2rem;
+            border-top: 4px solid var(--white);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            border: 2px solid var(--white);
+            transition: all 0.2s ease;
+            min-width: 180px;
+        }
+
+        .footer-link:hover {
+            background-color: var(--white);
+            color: var(--blue);
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-link i {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link span {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-bottom p {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding-bottom: 1rem;
+                gap: 1rem;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            body {
+                padding-top: 180px;
+            }
+
+            .countdown-grid {
+                gap: 1rem;
+            }
+
+            .countdown-item {
+                min-width: 100px;
+                padding: 1rem;
+            }
+
+            .countdown-item .number {
+                font-size: 2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo.jpeg" alt="Bugema University Logo">
+            <div class="logo-text">
+                Bugema University
+                <span>Department of Computing and Informatics</span>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="registration.html">Register</a>
+            <a href="news and update.html" class="active">News</a>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>News & Updates</h1>
+        <p>Stay informed about the latest events and activities in our department</p>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <h2 class="countdown-title"><i class="fa-solid fa-clock"></i> Upcoming Events Countdown</h2>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span class="number" id="days">0</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="hours">0</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="minutes">0</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="seconds">0</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 1.1rem; font-weight: 600;" id="next-event">Next: Freshers Ball</p>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="news-grid">
+
+            <!-- Freshers Ball - Urgent -->
+            <div class="news-card urgent">
+                <div class="news-header">
+                    <h3><i class="fa-solid fa-party horns"></i> Freshers Ball 2026</h3>
+                    <span class="news-badge badge-urgent">Tomorrow!</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">
+                        <i class="fa-solid fa-calendar"></i> Thursday, March 19, 2026
+                    </div>
+                    <p>Join us for the most anticipated event of the year! The Annual Freshers Ball is here to welcome
+                        all new students to the Department of Computing and Informatics. Get ready for an unforgettable
+                        night of music, food, and celebration!</p>
+                    <div class="news-details">
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-clock"></i> 6:00 PM - 4:00 AM
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-location-dot"></i> Graduation Square, Bugema University
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-ticket"></i> Entry: Student ID Required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ongoing Tournament -->
+            <div class="news-card ongoing">
+                <div class="news-header">
+                    <h3><i class="fa-solid fa-trophy"></i> Inter-Class Volleyball Tournament</h3>
+                    <span class="news-badge badge-ongoing">Ongoing</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">
+                        <i class="fa-solid fa-calendar"></i> March 16 - March 20, 2026
+                    </div>
+                    <p>The excitement is building as our inter-class volleyball tournament enters its final days! Cheer
+                        for your class as the top teams battle it out for the championship title. Don't miss the finals
+                        this Friday!</p>
+                    <div class="news-details">
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-clock"></i> 9:00 AM - 5:00 PM Daily
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-location-dot"></i> University Sports Ground
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-users"></i> All Years Welcome
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Trip -->
+            <div class="news-card upcoming">
+                <div class="news-header">
+                    <h3><i class="fa-solid fa-bus"></i> Educational Trip to Tech Hub</h3>
+                    <span class="news-badge badge-upcoming">Upcoming</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">
+                        <i class="fa-solid fa-calendar"></i> Thursday, April 2, 2026
+                    </div>
+                    <p>Get ready for an exciting educational trip to the Kampala Technology Hub! This is a golden
+                        opportunity for students to experience cutting-edge technology firsthand and network with
+                        industry professionals.</p>
+                    <div class="news-details">
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-clock"></i> Departure: 8:00 AM
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-location-dot"></i> Kampala Technology Hub
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-money-bill"></i> Transport: UGX 50,000
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Elections -->
+            <div class="news-card upcoming">
+                <div class="news-header">
+                    <h3><i class="fa-solid fa-box-archive"></i> Department Elections 2026</h3>
+                    <span class="news-badge badge-upcoming">Upcoming</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">
+                        <i class="fa-solid fa-calendar"></i> Tuesday, April 7, 2026
+                    </div>
+                    <p>Your voice matters! The annual department student leadership elections are coming up. All
+                        students are encouraged to participate in shaping the future of our department. Nomination forms
+                        available at the department office.</p>
+                    <div class="news-details">
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-clock"></i> Voting: 9:00 AM - 4:00 PM
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-location-dot"></i> Department Voting Center
+                        </div>
+                        <div class="news-detail-item">
+                            <i class="fa-solid fa-user-plus"></i> Nomination Deadline: April 3, 2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="student-portal.html" class="footer-link">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <span>Student Portal</span>
+                </a>
+                <a href="staff-portal.html" class="footer-link">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <span>Staff Portal</span>
+                </a>
+                <a href="e-learning.html" class="footer-link">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>E-Learning</span>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Department of Computing and Informatics, Bugema University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        // Next event: Freshers Ball - March 19, 2026
+        const events = [
+            { name: "Freshers Ball", date: new Date("March 19, 2026 18:00:00") },
+            { name: "Educational Trip", date: new Date("April 2, 2026 08:00:00") },
+            { name: "Department Elections", date: new Date("April 7, 2026 09:00:00") }
+        ];
+
+        function getNextEvent() {
+            const now = new Date();
+            let nextEvent = null;
+
+            for (let event of events) {
+                if (event.date > now) {
+                    nextEvent = event;
+                    break;
+                }
+            }
+
+            return nextEvent || events[0];
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const nextEvent = getNextEvent();
+            const diff = nextEvent.date - now;
+
+            if (diff <= 0) {
+                document.getElementById("days").textContent = "0";
+                document.getElementById("hours").textContent = "0";
+                document.getElementById("minutes").textContent = "0";
+                document.getElementById("seconds").textContent = "0";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+
+            document.getElementById("next-event").textContent = "Next: " + nextEvent.name;
+        }
+
+        // Update immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+
+</html>

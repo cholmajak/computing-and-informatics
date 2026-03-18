@@ -1,0 +1,803 @@
+s
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bugema University - Department of Computing and Informatics</title>
+    <!-- Use a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blue: #0033A0;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--blue);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 55px;
+            /* Adjust based on actual logo.jpeg aspect ratio */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--blue);
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        /* Navigation Links */
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            border-color: var(--blue);
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            background-color: var(--white);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)), url('it.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: var(--blue);
+            color: var(--white);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--blue);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 750px;
+            margin-inline: auto;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 0px;
+            /* Sharp corners for modern flat look */
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background-color: var(--blue);
+            color: var(--white);
+            border: 2px solid var(--blue);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--white);
+            color: var(--blue);
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px var(--blue);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--blue);
+            color: var(--white);
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px var(--blue);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background-color: var(--white);
+            border: 2px solid var(--blue);
+            padding: 3rem 2rem;
+            transition: all 0.2s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .card:hover {
+            transform: translate(-8px, -8px);
+            box-shadow: 12px 12px 0px var(--blue);
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        .card:hover .card-icon,
+        .card:hover h3,
+        .card:hover p {
+            color: var(--white);
+            stroke: var(--white);
+        }
+
+        .card.card-with-bg {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            transition: all 0.4s ease;
+            /* Linear gradients applied inline via HTML style attribute */
+        }
+
+        /* Hover overlay for background images */
+        .card-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            transition: background-color 0.4s ease;
+            z-index: 1;
+        }
+
+        .card:hover .card-bg::after {
+            background-color: rgba(0, 51, 160, 0.85);
+            /* The blue hover tint */
+        }
+
+        .card-content {
+            padding: 3rem 2rem;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
+            /* Needs to be above the overlay */
+        }
+
+        .card-icon {
+            margin-bottom: 2rem;
+            color: var(--blue);
+            transition: color 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--blue);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: square;
+            stroke-linejoin: miter;
+            transition: stroke 0.2s ease;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--blue);
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .card p {
+            color: var(--blue);
+            line-height: 1.6;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        /* Decorative background elements using only blue borders */
+        .decor-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, var(--blue) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--blue) 1px, transparent 1px);
+            opacity: 0.05;
+            /* This translates to a very faint blue strictly derived from the single blue color */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            padding: 8rem 5%;
+            background-color: #f8f9fa;
+            /* slightly off white */
+            border-top: 2px solid var(--blue);
+            position: relative;
+            z-index: 5;
+        }
+
+        .programs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .programs-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .programs-header h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--blue);
+            text-transform: uppercase;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .program-card {
+            background-color: var(--white);
+            border: 1px solid rgba(0, 51, 160, 0.2);
+            border-left: 4px solid var(--blue);
+            padding: 1rem 1.5rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .program-card:hover {
+            transform: translateX(6px);
+            box-shadow: 4px 4px 0px rgba(0, 51, 160, 0.1);
+            background-color: #f0f4ff;
+        }
+
+        .program-icon {
+            font-size: 1.5rem;
+            color: var(--blue);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .program-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--blue);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* Head of Department Section */
+        .hod-section {
+            padding: 8rem 5%;
+            background-color: var(--white);
+            position: relative;
+            z-index: 5;
+            border-top: 2px solid var(--blue);
+        }
+
+        .hod-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hod-image-wrapper {
+            position: relative;
+        }
+
+        .hod-image {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            display: block;
+            border: 2px solid var(--blue);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Decorative block shadow for neo-brutalism behind the image */
+        .hod-image-decoration {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 100%;
+            max-width: 450px;
+            height: calc(100% - 4px);
+            /* Account for border width */
+            background-color: var(--blue);
+            z-index: 1;
+        }
+
+        .hod-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hod-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--blue);
+            text-transform: uppercase;
+        }
+
+        .hod-content p {
+            color: var(--blue);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hod-signature {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--blue);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hod-signature strong {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--blue);
+            text-transform: uppercase;
+        }
+
+        .hod-signature span {
+            font-size: 0.9rem;
+            color: var(--blue);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cta-group {
+                flex-direction: column;
+            }
+
+            header {
+                flex-direction: column;
+                padding-bottom: 1rem;
+                gap: 1rem;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .features {
+                padding-bottom: 5rem;
+            }
+
+            .hod-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hod-content {
+                align-items: center;
+            }
+
+            .hod-image-wrapper {
+                margin: 0 auto;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--blue);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+            border-top: 4px solid var(--white);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            border: 2px solid var(--white);
+            transition: all 0.2s ease;
+            min-width: 180px;
+        }
+
+        .footer-link:hover {
+            background-color: var(--white);
+            color: var(--blue);
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-link i {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link span {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-bottom p {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo.jpeg" alt="Bugema University Logo">
+            <div class="logo-text">
+                Bugema University
+                <span>Department of Computing and Informatics</span>
+            </div>
+        </a>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="registration.html">Register</a>
+            <a href="news and update.html">News</a>
+        </nav>
+    </header>
+
+    <!-- Main Hero Banner -->
+    <section class="hero">
+        <div class="decor-grid"></div>
+
+        <div class="hero-content">
+            <div class="welcome-badge">Igniting Tech Innovators</div>
+            <h1>Department of Computing & Informatics</h1>
+            <p class="hero-description">
+                Empowering the next generation of tech leaders at Bugema University. We provide world-class education
+                and cutting-edge research opportunities in computer science, software engineering, artificial
+                intelligence, and information systems.
+            </p>
+            <div class="cta-group">
+                <a href="#explore" class="btn btn-primary">Explore Programs</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <a href="registration.html" class="btn btn-secondary">Register Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Head of Department Section -->
+    <section class="hod-section" id="about">
+        <div class="hod-container">
+            <div class="hod-image-wrapper">
+                <img src="HOD.jpeg" alt="Head of Department" class="hod-image">
+                <div class="hod-image-decoration"></div>
+            </div>
+            <div class="hod-content">
+                <div class="welcome-badge">Message from the HOD</div>
+                <h2>Leading the Future of Tech Education</h2>
+                <p>Welcome to the Department of Computing and Informatics at Bugema University. We are dedicated to
+                    nurturing innovative minds, fostering cutting-edge research, and preparing our students to lead in
+                    the rapidly evolving world of technology.</p>
+                <p>Our commitment to academic excellence and industry relevance ensures that our graduates are not just
+                    ready for the futureâ€”they are the ones who will build it.</p>
+
+                <div class="hod-signature">
+                    <strong>Head of Department</strong>
+                    <span>Mr Ssewankabo Erma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs-section" id="explore">
+        <div class="programs-container">
+            <div class="programs-header">
+                <div class="welcome-badge">Academic Excellence</div>
+                <h2>Explore Our Programs</h2>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Bachelor of Library and Information Science -->
+                <div class="program-card">
+                    <i class="fa-solid fa-book-open program-icon"></i>
+                    <h3>Bachelor of Library and Information Science</h3>
+                </div>
+
+                <!-- Bachelor of Business Computing -->
+                <div class="program-card">
+                    <i class="fa-solid fa-chart-pie program-icon"></i>
+                    <h3>Bachelor of Business Computing</h3>
+                </div>
+
+                <!-- Bachelor of Science in Network Systems Administration -->
+                <div class="program-card">
+                    <i class="fa-solid fa-network-wired program-icon"></i>
+                    <h3>Bachelor of Science in Network Systems Administration</h3>
+                </div>
+
+                <!-- Bachelor of Science in Applied Data Science and Artificial Intelligence -->
+                <div class="program-card">
+                    <i class="fa-solid fa-brain program-icon"></i>
+                    <h3>Bachelor of Science in Applied Data Science and Artificial Intelligence</h3>
+                </div>
+
+                <!-- Bachelor of Science in Software Engineering -->
+                <div class="program-card">
+                    <i class="fa-solid fa-code program-icon"></i>
+                    <h3>Bachelor of Science in Software Engineering</h3>
+                </div>
+
+                <!-- Bachelor in Records and Archives Management -->
+                <div class="program-card">
+                    <i class="fa-solid fa-box-archive program-icon"></i>
+                    <h3>Bachelor in Records and Archives Management</h3>
+                </div>
+
+                <!-- Diploma of Computer Engineering -->
+                <div class="program-card">
+                    <i class="fa-solid fa-microchip program-icon"></i>
+                    <h3>Diploma of Computer Engineering</h3>
+                </div>
+
+                <!-- Diploma in Computer Forensics -->
+                <div class="program-card">
+                    <i class="fa-solid fa-user-secret program-icon"></i>
+                    <h3>Diploma in Computer Forensics</h3>
+                </div>
+
+                <!-- Certificate in Information Technology(UBTEB) -->
+                <div class="program-card">
+                    <i class="fa-solid fa-laptop-code program-icon"></i>
+                    <h3>Certificate in Information Technology (UBTEB)</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Useful Links -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="student-portal.html" class="footer-link">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <span>Student Portal</span>
+                </a>
+                <a href="staff-portal.html" class="footer-link">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <span>Staff Portal</span>
+                </a>
+                <a href="e-learning.html" class="footer-link">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>E-Learning</span>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Department of Computing and Informatics, Bugema University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
