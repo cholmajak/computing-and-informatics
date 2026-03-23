@@ -219,6 +219,18 @@
 
         .program-courses.active {
             display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .program-courses h4 {
@@ -229,6 +241,15 @@
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--blue);
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .program-courses h4::before {
+            content: '\f19d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
         }
 
         .course-grid {
@@ -245,10 +266,12 @@
             border: 2px solid var(--blue);
             cursor: pointer;
             transition: all 0.2s ease;
+            background-color: var(--white);
         }
 
         .course-checkbox:hover {
             background-color: #f0f4ff;
+            transform: translateX(4px);
         }
 
         .course-checkbox input[type="checkbox"] {
@@ -256,6 +279,7 @@
             height: 20px;
             accent-color: var(--blue);
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .course-checkbox label {
@@ -272,14 +296,29 @@
             color: var(--blue);
             background: rgba(0, 51, 160, 0.1);
             padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            flex-shrink: 0;
         }
 
         /* No courses message */
         .no-courses-message {
             text-align: center;
-            padding: 2rem;
-            color: rgba(0, 51, 160, 0.6);
+            padding: 3rem 2rem;
+            color: rgba(0, 51, 160, 0.7);
             font-weight: 600;
+            background-color: #f8f9fa;
+            border: 2px dashed var(--blue);
+            border-radius: 8px;
+        }
+
+        .no-courses-message i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .no-courses-message p {
+            font-size: 1rem;
         }
 
         /* File Upload */
@@ -419,7 +458,7 @@
                     <div class="form-group">
                         <label class="form-label" for="registrationNumber">Registration Number</label>
                         <input type="text" class="form-control" id="registrationNumber" name="registrationNumber"
-                            placeholder="e.g., BU/2024/001" required>
+                            placeholder="e.g., 24/BSE/BU/R/0001" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -475,168 +514,545 @@
             <div class="form-section">
                 <h3><i class="fa-solid fa-book"></i> Course Units</h3>
                 <p style="margin-bottom: 1.5rem; font-size: 0.95rem;">Select all the course units you are registering
-                    for this semester:</p>
+                    for this semester based on your programme:</p>
 
-                <div class="course-grid">
-                    <!-- Year 1 Semester 1 Courses -->
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course1" name="courses[]" value="CIT101">
-                        <label for="course101">Introduction to Computing</label>
-                        <span class="course-code">CIT101</span>
+                <!-- Bachelor of Science in Software Engineering -->
+                <div class="program-courses" data-program="bs-se">
+                    <h4>Bachelor of Science in Software Engineering</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBCT2213">
+                            <label>Internet and Web Programming</label>
+                            <span class="course-code">BBCT 2213 (3 Hrs)</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BNCT2214">
+                            <label>Computer Networks and Data Communication</label>
+                            <span class="course-code">BNCT 2214 (3 Hrs)</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BNCT2216">
+                            <label>Windows Client Server Administration</label>
+                            <span class="course-code">BNCT 2216 (3 Hrs)</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BNCT2217">
+                            <label>Network and Information Security</label>
+                            <span class="course-code">BNCT 2217 (3 Hrs)</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BSCT2209">
+                            <label>User Interface and User Experience Design</label>
+                            <span class="course-code">BSCT 2209 (3 Hrs)</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BSCT2220">
+                            <label>Android Programming</label>
+                            <span class="course-code">BSCT 2220 (3 Hrs)</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BSCT2208">
+                            <label>Introduction to Linux</label>
+                            <span class="course-code">BSCT 2208 (3 Hrs)</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course2" name="courses[]" value="CIT102">
-                        <label for="course102">Fundamentals of Programming</label>
-                        <span class="course-code">CIT102</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course3" name="courses[]" value="CIT103">
-                        <label for="course103">Mathematics for Computing</label>
-                        <span class="course-code">CIT103</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course4" name="courses[]" value="CIT104">
-                        <label for="course104">Computer Hardware & Architecture</label>
-                        <span class="course-code">CIT104</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course5" name="courses[]" value="CIT105">
-                        <label for="course105">Technical Communication</label>
-                        <span class="course-code">CIT105</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course6" name="courses[]" value="CIT106">
-                        <label for="course106">Internet Fundamentals</label>
-                        <span class="course-code">CIT106</span>
-                    </div>
+                </div>
 
-                    <!-- Year 1 Semester 2 Courses -->
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course7" name="courses[]" value="CIT201">
-                        <label for="course201">Data Structures & Algorithms</label>
-                        <span class="course-code">CIT201</span>
+                <!-- Bachelor of Science in Applied Data Science and AI -->
+                <div class="program-courses" data-program="bs-ds-ai">
+                    <h4>Bachelor of Science in Applied Data Science and AI</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA101">
+                            <label>Introduction to Data Science</label>
+                            <span class="course-code">DSA101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA102">
+                            <label>Statistics for Data Science</label>
+                            <span class="course-code">DSA102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA103">
+                            <label>Python Programming</label>
+                            <span class="course-code">DSA103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA201">
+                            <label>Machine Learning Fundamentals</label>
+                            <span class="course-code">DSA201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA202">
+                            <label>Data Visualization</label>
+                            <span class="course-code">DSA202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA203">
+                            <label>Big Data Technologies</label>
+                            <span class="course-code">DSA203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA301">
+                            <label>Deep Learning</label>
+                            <span class="course-code">DSA301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA302">
+                            <label>Natural Language Processing</label>
+                            <span class="course-code">DSA302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA303">
+                            <label>Computer Vision</label>
+                            <span class="course-code">DSA303</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA401">
+                            <label>AI Ethics & Governance</label>
+                            <span class="course-code">DSA401</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA402">
+                            <label>Predictive Analytics</label>
+                            <span class="course-code">DSA402</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DSA403">
+                            <label>Data Science Capstone</label>
+                            <span class="course-code">DSA403</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course8" name="courses[]" value="CIT202">
-                        <label for="course202">Object-Oriented Programming</label>
-                        <span class="course-code">CIT202</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course9" name="courses[]" value="CIT203">
-                        <label for="course203">Database Management Systems</label>
-                        <span class="course-code">CIT203</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course10" name="courses[]" value="CIT204">
-                        <label for="course204">Operating Systems</label>
-                        <span class="course-code">CIT204</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course11" name="courses[]" value="CIT205">
-                        <label for="course205">Statistics & Probability</label>
-                        <span class="course-code">CIT205</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course12" name="courses[]" value="CIT206">
-                        <label for="course206">Web Development Basics</label>
-                        <span class="course-code">CIT206</span>
-                    </div>
+                </div>
 
-                    <!-- Year 2 Courses -->
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course13" name="courses[]" value="CIT301">
-                        <label for="course301">Software Engineering</label>
-                        <span class="course-code">CIT301</span>
+                <!-- Bachelor of Science in Network Systems Administration -->
+                <div class="program-courses" data-program="bs-nsa">
+                    <h4>Bachelor of Science in Network Systems Administration</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA101">
+                            <label>Introduction to Networking</label>
+                            <span class="course-code">NSA101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA102">
+                            <label>Network Protocols</label>
+                            <span class="course-code">NSA102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA103">
+                            <label>Server Administration</label>
+                            <span class="course-code">NSA103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA201">
+                            <label>Network Security</label>
+                            <span class="course-code">NSA201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA202">
+                            <label>Linux Administration</label>
+                            <span class="course-code">NSA202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA203">
+                            <label>Windows Server Management</label>
+                            <span class="course-code">NSA203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA301">
+                            <label>Virtualization Technologies</label>
+                            <span class="course-code">NSA301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA302">
+                            <label>Cloud Infrastructure</label>
+                            <span class="course-code">NSA302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA303">
+                            <label>Network Monitoring & Troubleshooting</label>
+                            <span class="course-code">NSA303</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA401">
+                            <label>Network Design & Architecture</label>
+                            <span class="course-code">NSA401</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA402">
+                            <label>Penetration Testing</label>
+                            <span class="course-code">NSA402</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="NSA403">
+                            <label>Network Systems Capstone</label>
+                            <span class="course-code">NSA403</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course14" name="courses[]" value="CIT302">
-                        <label for="course302">Computer Networks</label>
-                        <span class="course-code">CIT302</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course15" name="courses[]" value="CIT303">
-                        <label for="course303">Artificial Intelligence</label>
-                        <span class="course-code">CIT303</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course16" name="courses[]" value="CIT304">
-                        <label for="course304">Cybersecurity Fundamentals</label>
-                        <span class="course-code">CIT304</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course17" name="courses[]" value="CIT305">
-                        <label for="course305">Mobile App Development</label>
-                        <span class="course-code">CIT305</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course18" name="courses[]" value="CIT306">
-                        <label for="course306">Cloud Computing</label>
-                        <span class="course-code">CIT306</span>
-                    </div>
+                </div>
 
-                    <!-- Year 3 Courses -->
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course19" name="courses[]" value="CIT401">
-                        <label for="course401">Advanced Software Development</label>
-                        <span class="course-code">CIT401</span>
+                <!-- Bachelor of Business Computing -->
+                <div class="program-courses" data-program="bbc">
+                    <h4>Bachelor of Business Computing</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC101">
+                            <label>Business Information Systems</label>
+                            <span class="course-code">BBC101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC102">
+                            <label>Introduction to Programming</label>
+                            <span class="course-code">BBC102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC103">
+                            <label>Business Mathematics</label>
+                            <span class="course-code">BBC103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC201">
+                            <label>Database Management</label>
+                            <span class="course-code">BBC201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC202">
+                            <label>Systems Analysis & Design</label>
+                            <span class="course-code">BBC202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC203">
+                            <label>Business Process Management</label>
+                            <span class="course-code">BBC203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC301">
+                            <label>Enterprise Resource Planning</label>
+                            <span class="course-code">BBC301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC302">
+                            <label>E-Business Systems</label>
+                            <span class="course-code">BBC302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC303">
+                            <label>Business Intelligence</label>
+                            <span class="course-code">BBC303</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC401">
+                            <label>IT Strategy & Governance</label>
+                            <span class="course-code">BBC401</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC402">
+                            <label>Project Management for IT</label>
+                            <span class="course-code">BBC402</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="BBC403">
+                            <label>Business Computing Capstone</label>
+                            <span class="course-code">BBC403</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course20" name="courses[]" value="CIT402">
-                        <label for="course402">Data Science & Analytics</label>
-                        <span class="course-code">CIT402</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course21" name="courses[]" value="CIT403">
-                        <label for="course403">Network Security</label>
-                        <span class="course-code">CIT403</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course22" name="courses[]" value="CIT404">
-                        <label for="course404">Machine Learning</label>
-                        <span class="course-code">CIT404</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course23" name="courses[]" value="CIT405">
-                        <label for="course405">IT Project Management</label>
-                        <span class="course-code">CIT405</span>
-                    </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course24" name="courses[]" value="CIT406">
-                        <label for="course406">Research Methods</label>
-                        <span class="course-code">CIT406</span>
-                    </div>
+                </div>
 
-                    <!-- Year 4 Courses -->
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course25" name="courses[]" value="CIT501">
-                        <label for="course501">Final Year Project I</label>
-                        <span class="course-code">CIT501</span>
+                <!-- Bachelor of Library and Information Science -->
+                <div class="program-courses" data-program="blis">
+                    <h4>Bachelor of Library and Information Science</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS101">
+                            <label>Introduction to Library Science</label>
+                            <span class="course-code">LIS101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS102">
+                            <label>Information Sources & Services</label>
+                            <span class="course-code">LIS102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS103">
+                            <label>Cataloging & Classification</label>
+                            <span class="course-code">LIS103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS201">
+                            <label>Digital Libraries</label>
+                            <span class="course-code">LIS201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS202">
+                            <label>Information Literacy</label>
+                            <span class="course-code">LIS202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS203">
+                            <label>Library Management</label>
+                            <span class="course-code">LIS203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS301">
+                            <label>Metadata Standards</label>
+                            <span class="course-code">LIS301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS302">
+                            <label>Records Management</label>
+                            <span class="course-code">LIS302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS303">
+                            <label>Information Ethics</label>
+                            <span class="course-code">LIS303</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS401">
+                            <label>Knowledge Management</label>
+                            <span class="course-code">LIS401</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS402">
+                            <label>Research Data Management</label>
+                            <span class="course-code">LIS402</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="LIS403">
+                            <label>Library Science Capstone</label>
+                            <span class="course-code">LIS403</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course26" name="courses[]" value="CIT502">
-                        <label for="course502">Emerging Technologies</label>
-                        <span class="course-code">CIT502</span>
+                </div>
+
+                <!-- Bachelor in Records and Archives Management -->
+                <div class="program-courses" data-program="bram">
+                    <h4>Bachelor in Records and Archives Management</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM101">
+                            <label>Introduction to Records Management</label>
+                            <span class="course-code">RAM101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM102">
+                            <label>Archives Administration</label>
+                            <span class="course-code">RAM102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM103">
+                            <label>Records Creation & Maintenance</label>
+                            <span class="course-code">RAM103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM201">
+                            <label>Electronic Records Management</label>
+                            <span class="course-code">RAM201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM202">
+                            <label>Preservation & Conservation</label>
+                            <span class="course-code">RAM202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM203">
+                            <label>Archives & Records Legislation</label>
+                            <span class="course-code">RAM203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM301">
+                            <label>Digital Preservation</label>
+                            <span class="course-code">RAM301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM302">
+                            <label>Information Security for Records</label>
+                            <span class="course-code">RAM302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM303">
+                            <label>Appraisal & Disposal</label>
+                            <span class="course-code">RAM303</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM401">
+                            <label>Archives Reference Services</label>
+                            <span class="course-code">RAM401</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM402">
+                            <label>Records Management Audit</label>
+                            <span class="course-code">RAM402</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="RAM403">
+                            <label>Records Management Capstone</label>
+                            <span class="course-code">RAM403</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course27" name="courses[]" value="CIT503">
-                        <label for="course503">Professional Ethics in IT</label>
-                        <span class="course-code">CIT503</span>
+                </div>
+
+                <!-- Diploma of Computer Engineering -->
+                <div class="program-courses" data-program="dce">
+                    <h4>Diploma of Computer Engineering</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE101">
+                            <label>Computer Hardware Fundamentals</label>
+                            <span class="course-code">DCE101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE102">
+                            <label>Basic Electronics</label>
+                            <span class="course-code">DCE102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE103">
+                            <label>Introduction to Programming</label>
+                            <span class="course-code">DCE103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE201">
+                            <label>Computer Architecture</label>
+                            <span class="course-code">DCE201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE202">
+                            <label>Microprocessors</label>
+                            <span class="course-code">DCE202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE203">
+                            <label>Network Fundamentals</label>
+                            <span class="course-code">DCE203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE301">
+                            <label>Computer Repair & Maintenance</label>
+                            <span class="course-code">DCE301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE302">
+                            <label>Operating Systems</label>
+                            <span class="course-code">DCE302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCE303">
+                            <label>Technical Drawing</label>
+                            <span class="course-code">DCE303</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course28" name="courses[]" value="CIT504">
-                        <label for="course504">Entrepreneurship in IT</label>
-                        <span class="course-code">CIT504</span>
+                </div>
+
+                <!-- Diploma in Computer Forensics -->
+                <div class="program-courses" data-program="dcf">
+                    <h4>Diploma in Computer Forensics</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF101">
+                            <label>Introduction to Computer Forensics</label>
+                            <span class="course-code">DCF101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF102">
+                            <label>Digital Evidence Collection</label>
+                            <span class="course-code">DCF102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF103">
+                            <label>Computer Fundamentals</label>
+                            <span class="course-code">DCF103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF201">
+                            <label>Forensic Tools & Techniques</label>
+                            <span class="course-code">DCF201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF202">
+                            <label>Network Forensics</label>
+                            <span class="course-code">DCF202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF203">
+                            <label>Legal Aspects of Forensics</label>
+                            <span class="course-code">DCF203</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF301">
+                            <label>Malware Analysis</label>
+                            <span class="course-code">DCF301</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF302">
+                            <label>Incident Response</label>
+                            <span class="course-code">DCF302</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="DCF303">
+                            <label>Forensic Report Writing</label>
+                            <span class="course-code">DCF303</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course29" name="courses[]" value="CIT505">
-                        <label for="course505">Final Year Project II</label>
-                        <span class="course-code">CIT505</span>
+                </div>
+
+                <!-- Certificate in Information Technology -->
+                <div class="program-courses" data-program="cit">
+                    <h4>Certificate in Information Technology</h4>
+                    <div class="course-grid">
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT101">
+                            <label>Introduction to Computing</label>
+                            <span class="course-code">CIT101</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT102">
+                            <label>Fundamentals of Programming</label>
+                            <span class="course-code">CIT102</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT103">
+                            <label>Mathematics for Computing</label>
+                            <span class="course-code">CIT103</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT104">
+                            <label>Computer Hardware & Architecture</label>
+                            <span class="course-code">CIT104</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT105">
+                            <label>Technical Communication</label>
+                            <span class="course-code">CIT105</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT106">
+                            <label>Internet Fundamentals</label>
+                            <span class="course-code">CIT106</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT201">
+                            <label>Data Structures & Algorithms</label>
+                            <span class="course-code">CIT201</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT202">
+                            <label>Object-Oriented Programming</label>
+                            <span class="course-code">CIT202</span>
+                        </div>
+                        <div class="course-checkbox">
+                            <input type="checkbox" name="courses[]" value="CIT203">
+                            <label>Database Management Systems</label>
+                            <span class="course-code">CIT203</span>
+                        </div>
                     </div>
-                    <div class="course-checkbox">
-                        <input type="checkbox" id="course30" name="courses[]" value="CIT506">
-                        <label for="course506">Industrial Attachment</label>
-                        <span class="course-code">CIT506</span>
-                    </div>
+                </div>
+
+                <!-- No courses selected message -->
+                <div class="no-courses-message" id="noCoursesMessage">
+                    <i class="fa-solid fa-info-circle"></i>
+                    <p>Please select your programme above to view available course units</p>
                 </div>
             </div>
 
@@ -674,6 +1090,44 @@
                 fileNameDisplay.innerHTML = '<i class="fa-solid fa-check-circle"></i> Selected: ' + e.target.files[0].name;
             }
         });
+
+        // Program-based course filtering
+        const programSelect = document.getElementById('program');
+        const programCourses = document.querySelectorAll('.program-courses');
+        const noCoursesMessage = document.getElementById('noCoursesMessage');
+
+        programSelect.addEventListener('change', function() {
+            const selectedProgram = this.value;
+            
+            // Hide all program courses initially
+            programCourses.forEach(function(courseSection) {
+                courseSection.classList.remove('active');
+            });
+
+            // Show message if no program selected
+            if (!selectedProgram) {
+                noCoursesMessage.style.display = 'block';
+            } else {
+                noCoursesMessage.style.display = 'none';
+                
+                // Show courses for selected program
+                const targetCourse = document.querySelector('[data-program="' + selectedProgram + '"]');
+                if (targetCourse) {
+                    targetCourse.classList.add('active');
+                }
+            }
+
+            // Clear all checkboxes when program changes
+            const allCheckboxes = document.querySelectorAll('input[name="courses[]"]');
+            allCheckboxes.forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+        });
+
+        // Initialize on page load
+        if (!programSelect.value) {
+            noCoursesMessage.style.display = 'block';
+        }
     </script>
 
 </body>
