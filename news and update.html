@@ -547,7 +547,7 @@
                     <span class="label">Seconds</span>
                 </div>
             </div>
-            <p style="margin-top: 1.5rem; font-size: 1.1rem; font-weight: 600;" id="next-event">Next: Freshers Ball</p>
+            <p style="margin-top: 1.5rem; font-size: 1.1rem; font-weight: 600;" id="next-event">Next: No upcoming events</p>
         </div>
     </section>
 
@@ -555,35 +555,8 @@
     <section class="news-section">
         <div class="news-grid">
 
-            <!-- Freshers Ball - Urgent -->
-            <div class="news-card urgent">
-                <div class="news-header">
-                    <h3><i class="fa-solid fa-party horns"></i> Freshers Ball 2026</h3>
-                    <span class="news-badge badge-urgent">Tomorrow!</span>
-                </div>
-                <div class="news-content">
-                    <div class="news-date">
-                        <i class="fa-solid fa-calendar"></i> Thursday, March 19, 2026
-                    </div>
-                    <p>Join us for the most anticipated event of the year! The Annual Freshers Ball is here to welcome
-                        all new students to the Department of Computing and Informatics. Get ready for an unforgettable
-                        night of music, food, and celebration!</p>
-                    <div class="news-details">
-                        <div class="news-detail-item">
-                            <i class="fa-solid fa-clock"></i> 6:00 PM - 4:00 AM
-                        </div>
-                        <div class="news-detail-item">
-                            <i class="fa-solid fa-location-dot"></i> Graduation Square, Bugema University
-                        </div>
-                        <div class="news-detail-item">
-                            <i class="fa-solid fa-ticket"></i> Entry: Student ID Required
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Ongoing Tournament -->
-            <div class="news-card ongoing">
+            <div class="news-card ongoing" id="tournament-card">
                 <div class="news-header">
                     <h3><i class="fa-solid fa-trophy"></i> Inter-Class Volleyball Tournament</h3>
                     <span class="news-badge badge-ongoing">Ongoing</span>
@@ -610,7 +583,7 @@
             </div>
 
             <!-- Upcoming Trip -->
-            <div class="news-card upcoming">
+            <div class="news-card upcoming" id="trip-card">
                 <div class="news-header">
                     <h3><i class="fa-solid fa-bus"></i> Educational Trip to Tech Hub</h3>
                     <span class="news-badge badge-upcoming">Upcoming</span>
@@ -637,7 +610,7 @@
             </div>
 
             <!-- Upcoming Elections -->
-            <div class="news-card upcoming">
+            <div class="news-card upcoming" id="elections-card">
                 <div class="news-header">
                     <h3><i class="fa-solid fa-box-archive"></i> Department Elections 2026</h3>
                     <span class="news-badge badge-upcoming">Upcoming</span>
@@ -690,12 +663,34 @@
     </footer>
 
     <script>
-        // Countdown Timer
-        // Next event: Freshers Ball - March 19, 2026
+        // Event data with expiration dates
         const events = [
-            { name: "Freshers Ball", date: new Date("March 19, 2026 18:00:00") },
-            { name: "Educational Trip", date: new Date("April 2, 2026 08:00:00") },
-            { name: "Department Elections", date: new Date("April 7, 2026 09:00:00") }
+            { 
+                name: "Educational Trip", 
+                date: new Date("April 2, 2026 08:00:00"),
+                endDate: new Date("April 2, 2026 23:59:59")
+            },
+            { 
+                name: "Department Elections", 
+                date: new Date("April 7, 2026 09:00:00"),
+                endDate: new Date("April 7, 2026 17:00:00")
+            }
+        ];
+
+        // News card expiration data
+        const newsCards = [
+            { 
+                id: "tournament-card",
+                endDate: new Date("March 20, 2026 23:59:59")
+            },
+            { 
+                id: "trip-card", 
+                endDate: new Date("April 2, 2026 23:59:59")
+            },
+            { 
+                id: "elections-card", 
+                endDate: new Date("April 7, 2026 23:59:59")
+            }
         ];
 
         function getNextEvent() {
@@ -709,12 +704,22 @@
                 }
             }
 
-            return nextEvent || events[0];
+            return nextEvent;
         }
 
         function updateCountdown() {
             const now = new Date();
             const nextEvent = getNextEvent();
+            
+            if (!nextEvent) {
+                document.getElementById("days").textContent = "0";
+                document.getElementById("hours").textContent = "0";
+                document.getElementById("minutes").textContent = "0";
+                document.getElementById("seconds").textContent = "0";
+                document.getElementById("next-event").textContent = "Next: No upcoming events";
+                return;
+            }
+
             const diff = nextEvent.date - now;
 
             if (diff <= 0) {
@@ -738,9 +743,22 @@
             document.getElementById("next-event").textContent = "Next: " + nextEvent.name;
         }
 
+        function checkExpiredNews() {
+            const now = new Date();
+            
+            newsCards.forEach(function(card) {
+                const cardElement = document.getElementById(card.id);
+                if (cardElement && now > card.endDate) {
+                    cardElement.style.display = 'none';
+                }
+            });
+        }
+
         // Update immediately and then every second
         updateCountdown();
+        checkExpiredNews();
         setInterval(updateCountdown, 1000);
+        setInterval(checkExpiredNews, 60000); // Check every minute
     </script>
 
 </body>
