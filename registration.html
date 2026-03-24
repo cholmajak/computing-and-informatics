@@ -384,6 +384,40 @@
             color: var(--blue);
         }
 
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .success-message i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             header {
@@ -1077,6 +1111,11 @@
             <button type="submit" class="btn-submit">
                 <i class="fa-solid fa-paper-plane"></i> Submit Registration
             </button>
+            <div id="successMessage" class="success-message">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Registration Submitted Successfully!</p>
+                <p>Your registration has been received. We will contact you shortly.</p>
+            </div>
         </form>
     </section>
 
@@ -1128,6 +1167,36 @@
         if (!programSelect.value) {
             noCoursesMessage.style.display = 'block';
         }
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var submitBtn = document.querySelector('.btn-submit');
+            var successMessage = document.getElementById('successMessage');
+            
+            // Disable the submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+            
+            // Simulate sending (in production, replace with actual form submission)
+            setTimeout(function() {
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Reset form
+                document.querySelector('form').reset();
+                
+                // Reset file name display
+                document.getElementById('fileName').innerHTML = '';
+                
+                // Re-enable button after a delay
+                setTimeout(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Registration';
+                }, 3000);
+            }, 1500);
+        });
     </script>
 
 </body>
